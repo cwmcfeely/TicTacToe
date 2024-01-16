@@ -5,15 +5,6 @@ print("***********************")
 print("***** Tic-Tac-Toe *****")
 print("***********************")
 print(" ")
-# Creating the game board
-game_board = ["-","-","-",
-             "-","-","-",
-             "-","-","-"]
-
-# Some Global variables
-current_player = 'X'
-winner = None
-game_running = True
 
 # function to print the board to command line
 def print_game_board(game_board):
@@ -130,14 +121,32 @@ def player_computer(game_board):
             game_board[position] = "O"
             switch_player()
 
-while game_running:
-    print_game_board(game_board)
-    player_input(game_board)
-    check_who_won()
-    check_tie_game(game_board)
-    if not game_running:
+def reset_game():
+    global game_board, current_player, winner, game_running
+    # Creating the game board
+    game_board = ["-","-","-",
+                  "-","-","-",
+                  "-","-","-"]
+    current_player = 'X'
+    winner = None
+    game_running = True
+
+while True:
+    reset_game()
+    
+    while game_running:
+        print_game_board(game_board)
+        player_input(game_board)
+        check_who_won()
+        check_tie_game(game_board)
+        if not game_running:
+            break
+        switch_player()
+        player_computer(game_board)
+        check_who_won()
+        check_tie_game(game_board)
+
+    play_again = input("Do you want to play again? (yes/no) ").lower()
+    if play_again != "yes":
+        print("Thank for playing, Goodbye!")
         break
-    switch_player()
-    player_computer(game_board)
-    check_who_won()
-    check_tie_game(game_board)
