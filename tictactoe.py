@@ -98,6 +98,28 @@ def switchPlayer():
 
 def playerComputer(gameBoard):
     while currentPlayer == "O":
+        for i in range(9):
+            if gameBoard[i] == "-":
+                # Simulate making a move at blank positions for computer player
+                gameBoard[i] = "O"
+                # This if statement will check if there is any winning moves for the computer player
+                if checkDiagonal(gameBoard) or checkHorizontal(gameBoard) or checkVertical(gameBoard):
+                    switchPlayer()
+                    return
+                # If it's not a winning move, return it back to a blank position
+                gameBoard[i] = "-"
+        # This range will looks for positions to block player1 from using
+        for i in range(9):
+            if gameBoard[i] == "-":
+                # Simulate making a move at the position for the player
+                gameBoard[i] = "X"
+                if checkDiagonal(gameBoard) or checkHorizontal(gameBoard) or checkVertical(gameBoard):
+                    gameBoard[i] = "O"
+                    switchPlayer()
+                    return
+                gameBoard[i] = "-"
+
+        # If there is no winning or blocking move, make a random move
         position = random.randint(0, 8)
         if gameBoard[position] == "-":
             gameBoard[position] = "O"
