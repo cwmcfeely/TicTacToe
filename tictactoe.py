@@ -21,13 +21,13 @@ def printGameBoard(gameBoard):
 # Function to take players input
 def playerInput(gameBoard):
     try:
-        playerIn = int(input("Enter a number 1-9: ")) # Need to use int conversion as input outputs as string
-        if playerIn >= 1 and playerIn <=9 and gameBoard[playerIn-1] == "-":
-            gameBoard[playerIn-1] = currentPlayer
-        else:
-            print("That move has already been taken!")
-            # This will let the player select a different position on the board
-            gameBoard[playerIn-1] = currentPlayer
+        while True:
+            playerIn = int(input("Enter a number 1-9: ")) # Need to use int conversion as input outputs as string
+            if playerIn >= 1 and playerIn <=9 and gameBoard[playerIn-1] == "-":
+                gameBoard[playerIn-1] = currentPlayer
+                break
+            else:
+                print("That move has already been taken!")
     except ValueError:
         print("Please only enter a number 1-9 and try again")
 
