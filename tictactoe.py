@@ -24,7 +24,7 @@ def printGameBoard(gameBoard):
 def playerInput(gameBoard):
     try:
         while True:
-            playerIn = int(input("Enter a number 1-9: ")) # Need to use int conversion as input outputs as string
+            playerIn = int(input(f"Player {currentPlayer} Enter a number 1-9: ")) # Need to use int conversion as input outputs as string
             if playerIn >= 1 and playerIn <=9 and gameBoard[playerIn-1] == "-":
                 gameBoard[playerIn-1] = currentPlayer
                 break
@@ -61,7 +61,7 @@ def checkVertical(gameBoard):
         return True
 
 # Checking for diagnaol win or tie   
-def checkDiagnol(gameBoard):
+def checkDiagonal(gameBoard):
     global winner # Global will change the scope to the whole file, not just the function
     if gameBoard[0] == gameBoard[4] == gameBoard[8] and gameBoard[0] != "-":
         winner = gameBoard[0]
@@ -75,13 +75,13 @@ def checkTieGame(gameBoard):
     global gameRunning
     if "-" not in gameBoard:
         printGameBoard(gameBoard)
-        print("It's a time game")
+        print("It's a time game!")
         gameRunning = False
 
 # Checking for the winner
 def checkWhoWon():
     global gameRunning
-    if checkDiagnol(gameBoard) or checkHorizontal(gameBoard) or checkVertical(gameBoard):
+    if checkDiagonal(gameBoard) or checkHorizontal(gameBoard) or checkVertical(gameBoard):
         printGameBoard(gameBoard)
         print(f"Congratualtions, The winner is player {winner}!")
         gameRunning = False
