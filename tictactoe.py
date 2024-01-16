@@ -28,6 +28,8 @@ def playerInput(gameBoard):
             if playerIn >= 1 and playerIn <=9 and gameBoard[playerIn-1] == "-":
                 gameBoard[playerIn-1] = currentPlayer
                 break
+            elif playerIn < 1 or playerIn > 9:
+                print("Please only enter a number betweem 1-9 and try again")
             else:
                 print("That move has already been taken!")
     except ValueError:
