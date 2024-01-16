@@ -18,7 +18,16 @@ Welcome to the Tic-Tac-Toe game! This is a simple command-line version of the cl
 
 ## How to Run
 
-Ensure you have Python installed on your machine. Run the script using the command:
+Ensure you have Python installed on your machine.
 
+1. Open terminal or cmd
+2. CD to the location where you download the script e.g cd downloads
+<img width="566" alt="Screenshot 2024-01-16 at 23 20 20" src="https://github.com/cwmcfeely/TicTacToe/assets/56093743/a77cbeee-e5f9-4efb-8948-dabdcdf18bba">
+
+3. Run the command:
 ```bash
-python tic_tac_toe.py
+python3 tictactoe.py
+```
+<img width="563" alt="Screenshot 2024-01-16 at 23 21 44" src="https://github.com/cwmcfeely/TicTacToe/assets/56093743/d90af74d-102d-427c-943b-945ef9999ddc">
+
+4. Begin playing! 
