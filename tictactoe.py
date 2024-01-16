@@ -73,8 +73,10 @@ def checkTieGame(gameBoard):
 
 # Checking for the winner
 def checkWhoWon():
+    global gameRunning
     if checkDiagnol(gameBoard) or checkHorizontal(gameBoard) or checkVertical(gameBoard):
-        print(f"The winner is {winner}")
+        printGameBoard(gameBoard)
+        print(f"Congratualtions, The winner is player {winner}!")
         gameRunning = False
 
 # Create a function that switches between each players turn
