@@ -1,5 +1,8 @@
 import random
 
+print("***********************")
+print("***** Tic-Tac-Toe *****")
+print("***********************")
 # Creating the game board
 gameBoard = ["-","-","-",
              "-","-","-",
@@ -75,7 +78,7 @@ def checkDiagonal(gameBoard):
 # Checking for a tie game, only need to check to see if there is not a blank space   
 def checkTieGame(gameBoard):
     global gameRunning
-    if "-" not in gameBoard:
+    if "-" not in gameBoard and not checkDiagonal(gameBoard) and not checkHorizontal(gameBoard) and not checkVertical(gameBoard):
         printGameBoard(gameBoard)
         print("It's a time game!")
         gameRunning = False
@@ -128,9 +131,11 @@ def playerComputer(gameBoard):
 while gameRunning:
     printGameBoard(gameBoard)
     playerInput(gameBoard)
-    checkTieGame(gameBoard)
     checkWhoWon()
+    checkTieGame(gameBoard)
+    if not gameRunning:
+        break
     switchPlayer()
     playerComputer(gameBoard)
-    checkTieGame(gameBoard)
     checkWhoWon()
+    checkTieGame(gameBoard)
