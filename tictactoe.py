@@ -10,12 +10,13 @@ gameRunning = True
 
 # function to print the board to command line
 def printGameBoard(gameBoard):
+    print(" ")
     print(" " + gameBoard[0] + " | " + gameBoard[1] + " | " + gameBoard[2])
     print("-----------")
     print(" " + gameBoard[3] + " | " + gameBoard[4] + " | " + gameBoard[5])
     print("-----------")
     print(" " + gameBoard[6] + " | " + gameBoard[7] + " | " + gameBoard[8])
-printGameBoard(gameBoard)
+    print(" ")
 
 # Function to take players input
 def playerInput(gameBoard):
@@ -29,36 +30,36 @@ def playerInput(gameBoard):
 # Checking for horizontal win or tie
 def checkHorizontal(gameBoard):
     global winner # Global will change the scope to the whole file, not just the function
-    if gameBoard[0] == gameBoard[1] == gameBoard[2] and gameBoard[1] != "-":
+    if gameBoard[0] == gameBoard[1] == gameBoard[2] and gameBoard[0] != "-":
         winner = gameBoard[0]
         return True
     elif gameBoard[3] == gameBoard[4] == gameBoard[5] and gameBoard[3] != "-":
         winner = gameBoard[3]
         return True
-    elif gameBoard[5] == gameBoard[6] == gameBoard[7] and gameBoard[5] != "-":
-        winner = gameBoard[5]
+    elif gameBoard[6] == gameBoard[7] == gameBoard[8] and gameBoard[6] != "-":
+        winner = gameBoard[6]
         return True
     
 # Checking for row win or tie   
-def checkRow(gameBoard):
+def checkVertical(gameBoard):
     global winner # Global will change the scope to the whole file, not just the function
-    if gameBoard[0] == gameBoard[3] == gameBoard[5] and gameBoard[0] != "-":
+    if gameBoard[0] == gameBoard[3] == gameBoard[6] and gameBoard[0] != "-":
         winner = gameBoard[0]
         return True
-    elif gameBoard[1] == gameBoard[4] == gameBoard[6] and gameBoard[1] != "-":
-        winner = gameBoard[1]
+    elif gameBoard[1] == gameBoard[4] == gameBoard[7] and gameBoard[1] != "-":
+        winner = gameBoard[2]
         return True
-    elif gameBoard[2] == gameBoard[5] == gameBoard[7] and gameBoard[2] != "-":
+    elif gameBoard[2] == gameBoard[5] == gameBoard[8] and gameBoard[2] != "-":
         winner = gameBoard[2]
         return True
 
 # Checking for diagnaol win or tie   
-def checkRow(gameBoard):
+def checkDiagnol(gameBoard):
     global winner # Global will change the scope to the whole file, not just the function
-    if gameBoard[0] == gameBoard[4] == gameBoard[7] and gameBoard[0] != "-":
+    if gameBoard[0] == gameBoard[4] == gameBoard[8] and gameBoard[0] != "-":
         winner = gameBoard[0]
         return True
-    elif gameBoard[2] == gameBoard[4] == gameBoard[5] and gameBoard[2] != "-":
+    elif gameBoard[2] == gameBoard[4] == gameBoard[6] and gameBoard[2] != "-":
         winner = gameBoard[2]
         return True
 
@@ -70,7 +71,23 @@ def checkTieGame(gameBoard):
         print("It's a time game")
         gameRunning = False
 
+# Checking for the winner
+def checkWhoWon():
+    if checkDiagnol(gameBoard) or checkHorizontal(gameBoard) or checkVertical(gameBoard):
+        print(f"The winner is {winner}")
+        gameRunning = False
+
+# Create a function that switches between each players turn
+def switchPlayer():
+    global currentPlayer
+    if currentPlayer == "X":
+        currentPlayer = "O"
+    else:
+        currentPlayer = "X"
 
 while gameRunning:
     printGameBoard(gameBoard)
     playerInput(gameBoard)
+    checkTieGame(gameBoard)
+    checkWhoWon()
+    switchPlayer()
